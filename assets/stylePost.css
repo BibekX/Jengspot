@@ -1,0 +1,242 @@
+body {
+	background-image: linear-gradient(
+		to bottom,
+		#40a9e6,
+		#40a9e6 80%,
+		#008020 20%
+	);
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	font-family: "Open Sans";
+	color: #fff;
+	overflow-x: hidden;
+}
+
+/* nav */
+nav {
+	font-family: "Open Sans";
+	font-weight: 500;
+	opacity: 1;
+	color: #fff;
+}
+
+.nav-item {
+	padding: 0 10px;
+	transition: all 0.5s ease-in-out;
+}
+
+.nav-item::after {
+	content: "";
+	position: relative;
+	top: -40%;
+	width: 100%;
+	height: 15px;
+	background: #00e23986;
+	display: block;
+	transform-origin: right top;
+	transform: scale(0, 1);
+	transition: transform 0.4s cubic-bezier(1, 0, 0, 1);
+	z-index: -1;
+}
+
+.nav-item:hover::after {
+	transform-origin: left top;
+	transform: scale(1, 1);
+}
+
+/* clouds to animate */
+.cloudDiv {
+	position: fixed;
+	z-index: -5;
+	left: -15vh;
+}
+.cloud {
+	height: 10vh;
+	left: -15vh;
+}
+/* content */
+.outerPostContainer {
+	margin: 12vh 0;
+}
+
+/* user details section */
+.fixedWrapper {
+	position: fixed;
+	width: 100%;
+}
+.userPhoto {
+	border-radius: 50%;
+	width: 3vw;
+}
+.userDetails {
+	display: flex;
+	align-items: center;
+	align-content: flex-start;
+	margin-bottom: 1em;
+}
+.username {
+	text-shadow: 2px 2px #494949;
+}
+
+.userPhotoDiv,
+.userTextDiv {
+	padding: 0;
+}
+
+/* filters */
+.filters {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-end;
+	justify-content: flex-end;
+	font-size: 0.8em;
+	padding-right: 0;
+}
+
+#whatSelector,
+#whereSelector {
+	width: 150px;
+	margin-bottom: 0.8em;
+}
+
+/* write post form */
+.writeComment {
+	background-color: #fff;
+	/* box-shadow: 6px 6px #494949; */
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+	text-align: right;
+}
+
+#commentContent {
+	width: 100%;
+	margin-top: 1em;
+	border: none;
+	border-bottom: 1px solid #494949;
+	height: 120px;
+}
+
+/* submit btn */
+#submitComment {
+	margin: 10px;
+	background-color: #494949;
+	color: #fff;
+	border: 1px solid #494949;
+	padding: 3px 5px;
+	transition: all 0.2s ease-in-out;
+}
+
+#submitComment:hover {
+	background: white;
+	border: 1px solid #fff;
+	color: #494949;
+}
+
+/* trending post */
+.trendingPost {
+	background-color: #fff;
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+	margin: 0 0 5vh 5vmin;
+	padding: 1.2em 0 0 0;
+	color: #494949;
+	font-size: 14px;
+	display: flex;
+	align-items: flex-start;
+	align-content: flex-start;
+}
+.trendingUserPhotoDiv,
+.trendingUserContentDiv {
+	padding: 10px;
+}
+.trendingUserPhoto {
+	width: 70px;
+	border-radius: 50%;
+	margin-left: 2vw;
+}
+.trendingUserContentDiv p {
+	padding: 5px 0;
+	margin: 0%;
+}
+
+.counters {
+	font-size: 1.1em;
+	display: flex;
+	justify-content: flex-end;
+	margin-bottom: 0.8em;
+}
+
+#postMap {
+	margin-top: 1em;
+	background-color: #494949; /*for visibility*/
+	width: 100%;
+	height: 250px;
+}
+
+#postLat,
+#postLng {
+	display: none;
+}
+
+.trendingPhotoDiv {
+	padding: 0;
+}
+
+.trendingPhoto {
+	padding: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+/* comments */
+.commenterPhoto {
+	border-radius: 50%;
+	width: 3vw;
+	margin-left: 1vw;
+}
+.commenterDetails {
+	display: flex;
+	align-items: center;
+	align-content: flex-start;
+	margin-bottom: 1em;
+}
+.commenterUsername {
+	font-size: 1.3em;
+}
+
+.commenterPhotoDiv,
+.commenterTextDiv {
+	padding: 0;
+}
+.comments {
+	width: 100%;
+}
+.comments h5 {
+	margin: 0 0 5vh 5vw;
+	text-shadow: 2px 2px #494949;
+}
+.commentDiv {
+	width: 100%;
+	height: 15vh;
+	background-color: #fff;
+	margin: 0 0 5vh 6.6vmin;
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+	color: #494949;
+	font-size: 14px;
+	padding: 20px;
+}
+.userCommentsContent {
+	padding-left: 0;
+}
+
+/* media query  */
+@media only screen and (max-width: 600px) {
+	.userTextDiv {
+		padding-left: 5%;
+	}
+	.outerDBContainer {
+		margin-top: 10vh;
+	}
+	.fixedWrapper {
+		position: relative;
+	}
+}

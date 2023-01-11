@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="icon" type="image/png" href=”../assets/app_logo.png”/>
+
+		<title>JengSpot</title>
+
+		<!-- animate css -->
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"
+		/>
+		<!-- bootstrap -->
+		<link
+			rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+			integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+			crossorigin="anonymous"
+		/>
+		<!-- font awesome  -->
+		<link
+			rel="stylesheet"
+			href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+			integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp"
+			crossorigin="anonymous"
+		/>
+		<!-- Google font -->
+		<link
+			href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap"
+			rel="stylesheet"
+		/>
+		<!-- custom -->
+		<!-- dashboard  -->
+		<link
+			rel="stylesheet"
+			type="text/css"
+			href="../assets/styleDashboard.css"
+		/>
+	</head>
+
+	<body>
+		<!-- navbar  -->
+		<nav class="navbar fixed-top navbar-expand-lg navbar-dark">
+			<button
+				class="navbar-toggler"
+				type="button"
+				data-toggle="collapse"
+				data-target="#navbarNav"
+				aria-controls="navbarNav"
+				aria-expanded="false"
+				aria-label="Toggle navigation"
+			>
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav ml-auto" id="navbarList">
+					<!-- <li class="nav-item">
+						<a class="nav-link" href="/rewards">Rewards</a>
+					</li> -->
+					<li class="nav-item">
+						<a class="nav-link" href="/posts">Posts</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/settings">Settings</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/logout">Log Out</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+		<!-- clouds in the background -->
+		<div class="cloudDiv">
+			<img src="../assets/cloud.png" class="cloud" id="cloud1" />
+			<br />
+			<img src="../assets/cloud.png" class="cloud" id="cloud2" />
+			<br />
+			<img src="../assets/cloud.png" class="cloud" id="cloud3" />
+			<br />
+			<img src="../assets/cloud.png" class="cloud" id="cloud4" />
+			<br />
+			<img src="../assets/cloud.png" class="cloud" id="cloud5" />
+			<br />
+			<img src="../assets/cloud.png" class="cloud" id="cloud6" />
+			<br />
+		</div>
+
+		<!-- content -->
+		<div class="outerDBContainer container-fluid">
+			<div class="dashboardRow row justify-content-center">
+				<div class="col-lg-4 col-md-4 col-sm-10 dashboardLeft">
+					<div class="fixedWrapper col-lg-4 col-md-4 col-sm-10">
+					<div class="col-12 userDetails">
+						<div class="col-3 userPhotoDiv">
+							<img
+								src="<%- userData.userPhoto%>"
+								alt="userPhoto"
+								class="userPhoto"
+							/>
+						</div>
+						<div class="col-4 userTextDiv">
+							<h5 class="username"><%= userData.username %></h5>
+							<p class="points">Gems earned: <%= userData.points_received %></p>
+						</div>
+						<div class="col-5 filters">
+							<form action="#" method="POST">
+								<select name="What do you want to do?" id="whatSelector" onChange="location = this.options[this.selectedIndex].value;">
+									<option value="#" selected>What do you want to do?</option>
+									<option value="/dashboard/whatToSee">What to see?</option>
+									<option value="/dashboard/whatToEat">What to eat?</option>
+									<option value="/dashboard/others">Let's do something else</option>
+								</select>
+							</form>
+
+							<form action="#" method="POST">
+								<select name="Where?" id="whereSelector"  onChange="location = this.options[this.selectedIndex].value;">
+									<option value="#" selected>Where do you want to </option>
+									<option value="/dashboard/hkIsland" >Hong Kong Island</option>
+									<option value="/dashboard/kowloon">Kowloon</option>
+									<option value="/dashboard/NT">New Territories</option>
+								</select>
+							</form>
+						</div>
+					</div>
+					<div class="col-12 writePost">
+						<form action="/writePost" method="POST">
+							<input
+								type="text"
+								name="postTitle"
+								id="postTitle"
+								placeholder="TITLE"
+								required
+							/>
+							<br />
+							<textarea
+								name="postContent"
+								id="postContent"
+								maxlength="500"
+								placeholder="WHERE DID YOU GO? SHARE WITH US! (500 characters)"
+								required
+							></textarea>
+							<br />
+							<input
+								type="text"
+								name="postAddress"
+								id="postAddress"
+								placeholder="ADDRESS"
+								required
+							/>
+							<div class="selectors">
+								<select name="postDo" id="postWhatSelector" required>
+									<optgroup label="What did you do?">
+										<option value="whatToEat">Eat</option>
+										<option value="whatToSee">See</option>
+										<option value="others">It was something else!</option>
+									</optgroup>
+								</select>
+								<select name="postGo" id="postWhereSelector" required>
+									<optgroup label="Where did you go?">
+										<option value="hkIsland">Hong Kong Island</option>
+										<option value="kowloon">Kowloon</option>
+										<option value="NT">New Territories</option>
+									</optgroup>
+								</select>
+							</div>
+							<input type="text" name="postLat" id="postLat" value="" />
+							<input type="text" name="postLng" id="postLng" value="" />
+
+							<div id="postMap"></div>
+
+							<div class="row">
+								<div class="col-6 selectedFileText">
+									<div id="selected"></div>
+								</div>
+								<div class="col-6">
+									<label class="button choosePhoto" for="postPhoto">
+										Pick a Photo
+									</label>
+									<input
+										type="file"
+										id="postPhoto"
+										onchange="displayFile()"
+										accept="image/jpeg"
+									/>
+									<input
+										type="text"
+										name="postPhoto"
+										id="postPhotoUrl"
+										value=""
+									/>
+
+									<button type="submit" id="submitPost">Submit</button>
+									<br />
+								</div>
+							</div>
+						</form>
+					</div>
+					</div>
+				</div>
+				<!-- dashboard right content -->
+				<div class="col-lg-5 col-md-5 col-sm-10 dashboardRight">
+					<% postData.forEach((post)=>{ %>
+
+					<div class="col-12 container-fluid trendingPost">
+						<div class="row">
+							<div class="col-lg-2 col-md-2 col-sm-2 trendingUserPhotoDiv">
+								<img
+									src="<%- post.users_userPhoto%>"
+									alt="userPhoto"
+									class="trendingUserPhoto"
+								/>
+							</div>
+							<div class="col-lg-9 col-md-9 col-sm-9 trendingUserContentDiv">
+								<h6 class="trendingUsername">
+									<strong><%= post.users_username%></strong>
+								</h6>
+								<p class="trendingDate"><%= post.postDate%></p>
+								<h6 class="trendingTitle"><%= post.postTitle%></h6>
+								<p class="trendingContent"><%= post.postContent%></p>
+								<br />
+								<p class="trendingContent">Address: <%= post.postAddress%></p>
+								<br />
+								<div class="col-12 counters">
+									<span>
+										<i
+											class="fas fa-heart"
+											id="<%-post.postId%>"
+											style="cursor: pointer"
+										></i>
+									</span>
+
+									<span>
+										<a href="/post/<%-post.postId%>">
+											<i class="fas fa-comment-alt"></i>
+										</a>
+										&nbsp; <%= post.received_comments %>
+									</span>
+									<span>
+										<a href="/post/<%-post.postId%>"></a>
+											<i class="fas fa-globe-asia"></i>
+										</a>
+									</span>
+								</div>
+							</div>
+							<br />
+							<div class="container-fluid">
+								<div class="col-12 trendingPhotoDiv">
+									<img src="<%- post.postPhoto%>" class="trendingPhoto" />
+								</div>
+							</div>
+						</div>
+					</div>
+					<% }) %>
+				</div>
+			</div>
+		</div>
+
+		<!-- smooth scroll -->
+		<script src="https://cdn.jsdelivr.net/gh/cferdinandi/smooth-scroll@15.0/dist/smooth-scroll.polyfills.min.js"></script>
+		<!-- jquery-->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<!-- bootstrap -->
+		<script
+			src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+			integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+			crossorigin="anonymous"
+		></script>
+		<script
+			src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+			integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+			crossorigin="anonymous"
+		></script>
+		<!-- GSAP -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
+		<!-- custom -->
+		<script src="../assets/frontend.js"></script>
+		<script src="../assets/frontendDashboard.js"></script>
+		<!-- google maps -->
+		<!-- Google Map-->
+		<script
+			defer
+			src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB77Ifdt8J_FbKIlSLystbif9l7oEdliUg&callback=initMap"
+		></script>
+	</body>
+	<!-- Icons made by <a href="http://www.freepik.com/" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/"
+    title="Flaticon"> www.flaticon.com</a> -->
+</html>

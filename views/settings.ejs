@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="shortcut icon" type="image/png" href=”../assets/app_logo.png”/>
+
+		<title>JengSpot</title>
+
+		<!-- animate css -->
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"
+		/>
+		<!-- bootstrap -->
+		<link
+			rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+			integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+			crossorigin="anonymous"
+		/>
+		<!-- font awesome  -->
+		<link
+			rel="stylesheet"
+			href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+			integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp"
+			crossorigin="anonymous"
+		/>
+		<!-- Google font -->
+		<link
+			href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap"
+			rel="stylesheet"
+		/>
+		<!-- custom -->
+		<!-- dashboard  -->
+		<link rel="stylesheet" type="text/css" href="../assets/styleSettings.css" />
+	</head>
+
+	<body>
+		<!-- navbar  -->
+		<nav class="navbar fixed-top navbar-expand-lg navbar-dark">
+			<button
+				class="navbar-toggler"
+				type="button"
+				data-toggle="collapse"
+				data-target="#navbarNav"
+				aria-controls="navbarNav"
+				aria-expanded="false"
+				aria-label="Toggle navigation"
+			>
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav ml-auto" id="navbarList">
+					<!-- <li class="nav-item">
+						<a class="nav-link" href="/rewards">Rewards</a>
+					</li> -->
+					<li class="nav-item">
+						<a class="nav-link" href="/posts">Posts</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/dashboard">Trending</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/logout">Log Out</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+		<!-- clouds in the background -->
+		<div class="cloudDiv">
+			<img src="../assets/cloud.png" class="cloud" id="cloud1" />
+			<br />
+			<img src="../assets/cloud.png" class="cloud" id="cloud2" />
+			<br />
+			<img src="../assets/cloud.png" class="cloud" id="cloud3" />
+			<br />
+			<img src="../assets/cloud.png" class="cloud" id="cloud4" />
+			<br />
+			<img src="../assets/cloud.png" class="cloud" id="cloud5" />
+			<br />
+			<img src="../assets/cloud.png" class="cloud" id="cloud6" />
+			<br />
+		</div>
+
+		<!-- content -->
+		<div class="outerDBContainer container-fluid">
+			<div class="dashboardRow row justify-content-center">
+				<div class="col-lg-4 col-md-4 col-sm-10 dashboardLeft">
+					<div class="fixedWrapper col-lg-4 col-md-4 col-sm-10">
+						<div class="col-12 userDetails">
+							<div class="col-3 userPhotoDiv">
+								<img
+									src="<%- userData.userPhoto%>"
+									alt="userPhoto"
+									class="userPhoto"
+								/>
+							</div>
+
+							<div class="col-4 userTextDiv">
+								<h5 class="username"><%= userData.username %></h5>
+								<p class="points">
+									Gems earned: <%= userData.points_received %>
+								</p>
+							</div>
+							<div class="col-5 filters"></div>
+						</div>
+
+						<div class="col-12 changeDetails">
+							<form action="/settings/username" method="POST">
+								<input
+									type="text"
+									name="username"
+									id="username"
+									placeholder="Update Your Username"
+									required
+								/>
+								<button type="submit" class="submit">Update</button>
+							</form>
+							<br />
+							<form action="/settings/email" method="POST">
+								<input
+									type="email"
+									name="email"
+									id="email"
+									placeholder="Update Your Email"
+									required
+								/>
+								<button type="submit" class="submit">Update</button>
+							</form>
+							<br />
+							<form action="/settings/password" method="POST">
+								<input
+									type="password"
+									name="password"
+									id="password"
+									placeholder="Update Your Password"
+									required
+								/>
+								<button type="submit" class="submit">Update</button>
+							</form>
+							<br />
+							<br />
+							<div class="row">
+								<div class="col-5 selectedFileText">
+									<div id="selected"></div>
+								</div>
+								<div class="col-7">
+									<form action="/settings/userPhoto" method="POST">
+										<label class="button choosePhoto" for="postPhoto">
+											Pick a Photo
+										</label>
+										<input
+											type="file"
+											id="postPhoto"
+											onchange="displayFile()"
+											accept="image/jpeg"
+										/>
+										<input
+											type="text"
+											name="userPhoto"
+											id="postPhotoUrl"
+											value=""
+										/>
+
+										<button type="submit" class="submit">Update</button>
+									</form>
+									<br />
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- dashboard right content -->
+				<div class="col-lg-5 col-md-5 col-sm-10 dashboardRight">
+					<div class="col-12 container-fluid trendingPost">
+						<div class="row justify-content-center">
+							<div class="col-lg-12 col-md-12 col-sm-12 trendingUserPhotoDiv">
+								<img
+									src="<%- userData.userPhoto%>"
+									alt="userPhoto"
+									class="currentUserPhoto"
+								/>
+							</div>
+							<div class="col-lg-12 col-md-12 col-sm-12 trendingUserContentDiv">
+								<p style="color: #a8a8a8">Your username</p>
+								<h5 class="trendingUsername"><%= userData.username%></h5>
+								<br />
+								<p style="color: #a8a8a8">Your email</p>
+								<h5 class="trendingUsername"><%= userData.email%></h5>
+								<br />
+
+								<p style="color: #a8a8a8">Gems received</p>
+								<h5 class="trendingUsername"><%= userData.points_received%></h5>
+								<br />
+
+								<p style="color: #a8a8a8">Gems redeemed</p>
+								<h5 class="trendingUsername"><%= userData.points_redeemed%></h5>
+								<br />
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- smooth scroll -->
+		<script src="https://cdn.jsdelivr.net/gh/cferdinandi/smooth-scroll@15.0/dist/smooth-scroll.polyfills.min.js"></script>
+		<!-- jquery-->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<!-- bootstrap -->
+		<script
+			src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+			integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+			crossorigin="anonymous"
+		></script>
+		<script
+			src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+			integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+			crossorigin="anonymous"
+		></script>
+		<!-- GSAP -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
+		<!-- custom -->
+		<script src="../assets/frontend.js"></script>
+		<script src="../assets/frontendSettings.js"></script>
+	</body>
+	<!-- Icons made by <a href="http://www.freepik.com/" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/"
+    title="Flaticon"> www.flaticon.com</a> -->
+</html>
